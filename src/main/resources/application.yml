@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  security:
+    user:
+      name: admin
+      password: password
+  datasource:
+    url: jdbc:mysql://bitsbankdata.c5ukkq2q4x3z.us-east-1.rds.amazonaws.com/bitsbankdata
+    username: admin
+    password: Niroop1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  hikari:
+    maximum-pool-size: 5            # Maximum number of connections in the pool
+    minimum-idle: 3                  # Minimum idle connections to maintain in the pool
+    connection-timeout: 30000        # Maximum time (in milliseconds) to wait for a connection before timing out (30 sec)
+    idle-timeout: 600000             # Maximum idle time (in ms) before a connection is removed (10 minutes)
+    max-lifetime: 900000            # Maximum lifetime (in ms) of a connection (30 minutes)
+    pool-name: HikariCPPool          # Optional name for the connection pool
+    connection-test-query: SELECT 1  # Query used to validate that a connection is still alive
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        
+  data:
+    redis:
+      host: clustercfg.rediscache.tevuov.use1.cache.amazonaws.com
+      port: 6379
+      timeout: 6000
+logging:
+  level:
+    root: INFO
+  # Additional logback configuration can be added to route logs to AWS S3.
